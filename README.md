@@ -13,8 +13,8 @@ This solves the issue where New Relic splits or drops distributed traces for Tem
 ## Quickstart Guide
 
 ### Prerequisites
-* Java 17+ installed 
-* A local instance of the [Temporal Developer Server](https://docs.temporal.io/cli/#start-dev-server) running (`temporal server start-dev`)
+* **Java 17+** installed
+* **Temporal CLI** installed (`brew install temporal`). The script will verify this.
 
 ### Running the Example
 
@@ -26,7 +26,7 @@ This solves the issue where New Relic splits or drops distributed traces for Tem
    ./run.sh
    ```
 
-The script will:
+The script will automatically start the Temporal Development Server (if it's not already running) and then:
 1. Compile the Spring Boot Temporal application.
 2. Start the Temporal Workers and REST API on port `8080`.
 3. Automatically trigger the `/hello` endpoint to kick off the long-running 130-second Temporal workflow.

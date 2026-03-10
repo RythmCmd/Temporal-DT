@@ -21,13 +21,17 @@ public class OtelConfig {
         OpenTelemetry openTelemetry() {
                 Resource resource = Resource.getDefault()
                                 .merge(Resource.create(Attributes.of(AttributeKey.stringKey("service.name"),
-                                                "multi-trace-groups")));
+                                                "multi-span")));
 
                 String endpoint = System.getenv("NR_ENDPOINT");
                 if (endpoint == null || endpoint.isEmpty()) {
                         endpoint = "http://localhost:4317";
                 }
                 String apiKey = System.getenv("MY_NEW_RELIC_API_KEY");
+
+                System.out.println("Configuring OpenTelemetry with endpoint: " + endpoint);
+                System.out.println("Using New Relic API Key: (length: " + (apiKey != null ? apiKey.length() : "null")
+                                + ")");
 
                 var exporterBuilder = OtlpGrpcSpanExporter.builder()
                                 .setEndpoint(endpoint);
